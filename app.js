@@ -18,7 +18,7 @@ class Rover {
             this.orientation=270;
             break;
         default:
-            // hata
+            throw "Wrong orientation,try again.";
     }
   }
   translate(movement){
@@ -33,7 +33,7 @@ class Rover {
             this.move();
             break;
         default:
-            // hata
+            throw "Wrong command, try again.";
     }
   }
   move(){
@@ -53,8 +53,6 @@ class Rover {
         case 270:
             this.y -= 1;
             break;
-        default:
-            // hata
     }
   }
     convertOrientation(){
@@ -70,13 +68,11 @@ class Rover {
                 return 'W';
             case 270:
                 return 'S';
-            default:
-                // hata
         }
     }
 
     toString(){
-        return `rover position x: ${this.x} rover position y: ${this.y} rover orientation: ${this.convertOrientation(this.orientation)}`;
+        return `${this.x} ${this.y} ${this.convertOrientation(this.orientation)}`;
     }
 }
 
@@ -96,26 +92,26 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-rl.question("", function(map) {
-    rl.question("", function(vehicle) {
-            rl.question("", function(command) {
-            map =map.split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } );
-            vehicle =vehicle.split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } );
-            var commandList =command.split('').filter( function(e) { return e.trim().length > 0; } );
-            const plateau = new Plateau(map[0],map[1]);
-            const rover = new Rover(vehicle[0],vehicle[1],vehicle[2]);
-            console.log(`${plateau.toString()}`);
-            console.log(`Rover first position: ${rover.toString()}`);
-            console.log(`commandlist: ${commandList}`);
-            for (const com of commandList) {
-                rover.translate(com);
-            }
-            console.log(`Rover last position: ${rover.toString()}`);
-            rl.close();
+function read(){
+    try{
+        rl.question("", function(map) { //read plateau size
+            rl.question("", function(vehicle) { //read rover position
+                    rl.question("", function(command) { //read commands
+                    map =map.split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } ); //parsing plateau size
+                    vehicle =vehicle.split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } ); //parsing rover first position
+                    var commandList =command.split('').filter( function(e) { return e.trim().length > 0; } ); //parsing commands
+                    const plateau = new Plateau(map[0],map[1]);
+                    const rover = new Rover(vehicle[0],vehicle[1],vehicle[2]);
+                    for (const com of commandList) {
+                        rover.translate(com); //calculate next position
+                    }
+                    console.log(`${rover.toString()}`); //print last position
+                    rl.close();
+                });
+            });
         });
-    });
-});
-
-rl.on("close", function() {
-    process.exit(0);
-});
+    }catch(e){
+        console.error(e);
+    }
+}
+read();
