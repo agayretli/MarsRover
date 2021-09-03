@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/agayretli/MarsRover/issues"
   },
-  "homepage": "https://github.com/agayretli/MarsRover#readme"
+  "homepage": "https://github.com/agayretli/MarsRover#readme",
+  "dependencies": {
+    "i18n": "^0.13.3",
+    "prompt": "^1.2.0"
+  }
 }

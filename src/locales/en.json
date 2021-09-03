@@ -1,0 +1,8 @@
+{
+	"mapDescribe": "mapDescribe",
+	"mapWarn": "mapWarn",
+	"vehicleDescribe": "vehicleDescribe",
+	"vehicleWarn": "vehicleWarn",
+	"commandDescribe": "commandDescribe",
+	"commandWarn": "commandWarn"
+}

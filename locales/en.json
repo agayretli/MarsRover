@@ -1,0 +1,10 @@
+{
+    "mapDescribe": "Enter plateau size (x y)",
+    "mapWarn": "Plateau size must be numbers only and must be greater than 0 (5 5)",
+
+    "vehicleDescribe": "Enter rover position and direction (x y D)",
+    "vehicleWarn": "Rover position must be numbers only and rover direction must be uppercase letters only (1 2 N)",
+    
+    "commandDescribe": "Enter commands for the rover movement",
+    "commandWarn": "Commands must be uppercase letters only (LRM)"
+}
