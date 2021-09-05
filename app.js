@@ -14,17 +14,11 @@ function run_prompt(){
         const commandList =result.command.split('').filter( function(e) { return e.trim().length > 0; } ); //parsing commands
         const plateau = new Plateau(map[0],map[1]);
         const rover = new Rover(vehicle[0],vehicle[1],vehicle[2]);
-        for (const command of commandList) {
-            rover.translate(command); //calculate next position
-            if(!plateau.isInside(rover.x,rover.y)){
-                var isOutside = true;
-                break;
-            }
-        }
+        const isOutside = rover.run(commandList, plateau);
         if(isOutside)
             console.log(`Rover outside the plateau (${rover.toString()}). Try again.`); //Rover outside the plateau.
         else
-            console.log(`Rover's current position: ${rover.toString()}`); //print current position of rover
+            console.log(`Rover's current position: ${rover.toString()}`); //Print current position of rover
         setTimeout(run_prompt,0);
     });
 }

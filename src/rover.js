@@ -72,6 +72,17 @@ class Rover {
                 throw "Wrong orientation, try again.";
         }
     }
+
+    run(commandList, plateau){
+        for (const command of commandList) {
+            this.translate(command); //calculate next position
+            if(!plateau.isInside(this.x,this.y)){
+                var isOutside = true;
+                break;
+            }
+        }
+        return isOutside;
+    }
   
     toString(){
         return `${this.x} ${this.y} ${this.convertOrientation(this.orientation)}`;
