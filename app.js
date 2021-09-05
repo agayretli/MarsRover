@@ -16,10 +16,15 @@ function run_prompt(){
         const rover = new Rover(vehicle[0],vehicle[1],vehicle[2]);
         for (const command of commandList) {
             rover.translate(command); //calculate next position
-            if(!plateau.isInside(rover.x,rover.y))
-                return function(){console.log("Rover outside the plateau. Try again."); return 1;};
+            if(!plateau.isInside(rover.x,rover.y)){
+                var isOutside = true;
+                break;
+            }
         }
-        console.log(`Rover's current position: ${rover.toString()}`); //print current position of rover
+        if(isOutside)
+            console.log(`Rover outside the plateau (${rover.toString()}). Try again.`); //Rover outside the plateau.
+        else
+            console.log(`Rover's current position: ${rover.toString()}`); //print current position of rover
         setTimeout(run_prompt,0);
     });
 }

@@ -4,7 +4,7 @@ class Plateau {
       this.y = Number(y);
     }
     isInside(x, y){
-        if(x<=this.x && y<=this.y){
+        if(0<=x && x<=this.x && 0<=y && y<=this.y){
             return true;
         }
         return false;
