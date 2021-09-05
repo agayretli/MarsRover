@@ -1,4 +1,3 @@
-var config = require('./config');
 const Plateau = require('./src/plateau.js');
 const Rover = require('./src/rover.js');
 const prompt = require('prompt');

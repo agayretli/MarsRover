@@ -1,3 +1,4 @@
+const config = require('../config');
 const { I18n } = require('i18n')
 const path = require('path')
 
@@ -6,6 +7,8 @@ const i18n = new I18n({
     directory: path.join(__dirname, '../locales'),
     defaultLocale: 'en'
 })
+
+i18n.setLocale(config.language);
 
 const properties = [
     {
